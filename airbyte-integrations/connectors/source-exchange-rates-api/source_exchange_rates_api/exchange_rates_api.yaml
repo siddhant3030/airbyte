@@ -1,0 +1,54 @@
+version: "0.1.0"
+
+definitions:
+  selector:
+    extractor:
+      field_pointer: []
+  requester:
+    url_base: "https://api.apilayer.com"
+    http_method: "GET"
+    authenticator:
+      type: ApiKeyAuthenticator
+      header: "apikey"
+      api_token: "{{ config['access_key'] }}"
+    request_options_provider:
+      request_parameters:
+        base: "{{ config['base'] }}"
+  retriever:
+    record_selector:
+      $ref: "*ref(definitions.selector)"
+    paginator:
+      type: NoPagination
+    requester:
+      $ref: "*ref(definitions.requester)"
+  base_stream:
+    retriever:
+      $ref: "*ref(definitions.retriever)"
+  rates_stream:
+    $ref: "*ref(definitions.base_stream)"
+    $options:
+      name: "rates"
+      primary_key: "date"
+      path: "/exchangerates_data/latest"
+
+streams:
+  - "*ref(definitions.rates_stream)"
+
+check:
+  type: CheckStream
+  stream_names: ["rates"]
+
+spec:
+  documentation_url: https://docsurl.com
+  connection_specification:
+    title: Exchange Rates Api Spec
+    type: object
+    required:
+      - access_key
+      - base
+    additionalProperties: true
+    properties:
+      api_key:
+        type: string
+        description: Your API Access Key
+        airbyte_secret: true
