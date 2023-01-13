@@ -34,7 +34,7 @@ connectionSpecification:
       order: 3
     start_date:
       type: string
-      description: Earliest date-time (UTC) from which to fetch data
+      description: "Earliest date-time (UTC) from which to fetch data"
       title: Start Date
       examples:
         - "Jan 09, 2022 00:00:00 AM"
