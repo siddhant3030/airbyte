@@ -6,10 +6,10 @@
         "json_schema": {},
         "supported_sync_modes": ["full_refresh", "incremental"],
         "source_defined_cursor": true,
-        "default_cursor_field": ["CompletionDate"]
+        "default_cursor_field": ["SubmissionDate"]
       },
       "sync_mode": "incremental",
-      "cursor_field": ["CompletionDate"],
+      "cursor_field": ["SubmissionDate"],
       "destination_sync_mode": "append"
     }
   ]

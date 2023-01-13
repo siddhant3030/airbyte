@@ -48,8 +48,8 @@ class SurveyStream(HttpStream, ABC):
 class SurveyctoStream(SurveyStream, IncrementalMixin):
     primary_key = "KEY"
     date_format_scto = "%b %d, %Y %H:%M:%S %p"
-    dateformat = "%Y-%m-%dT%H:%M:%S+00:00"
-    cursor_field = "CompletionDate"
+    dateformat = "%Y-%m-%dT%H:%M:%SZ"
+    cursor_field = "SubmissionDate" # example data from SurveyCTO has SubmissionDate but not CompletionDate
     _cursor_value = None
 
     @property
