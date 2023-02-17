@@ -18,7 +18,7 @@ class Helpers(object):
     def modify_date(response_json):
         data_mod = ["starttime", "endtime", "CompletionDate", "SubmissionDate"]
         dateformat_in = "%b %d, %Y %I:%M:%S %p"
-        dateformat_out = "%Y-%m-%dT%H:%M:%S+00:00"
+        dateformat_out = "%Y-%m-%dT%H:%M:%SZ"
 
         for data in response_json:
             for key in data_mod:
@@ -73,5 +73,4 @@ class Helpers(object):
             "properties": schema,
         }
         return json_schema
-
   
